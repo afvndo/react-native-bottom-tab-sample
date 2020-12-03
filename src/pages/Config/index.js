@@ -18,18 +18,31 @@ export default function Config() {
   const params = route.params;
   const [store, setStore] = useContext(StoreContext);
   const [selectedCount, setSelectedCount] = useState({});
+  const storeLastCount = store.length;
+  const defaultCount = {
+    id: 0,
+    title: 'Counter 00',
+    selected: true,
+    count: 0,
+  };
 
   useEffect(() => {
     if (params === undefined) {
-      setSelectedCount({id: 0, title: 'Counter 0', count: 0, selected: true});
+      const id = storeLastCount + 1;
+      setSelectedCount({
+        id,
+        title: `Counter ${fillId(id)}`,
+        count: 0,
+        selected: true,
+      });
     } else {
       setSelectedCount(params);
     }
-  }, [params]);
+  }, [params, storeLastCount]);
 
   const addCounter = () => {
     const lastCount = store.length;
-    const id = lastCount + 1;
+    const id = store[lastCount - 1].id + 1;
     let newList = store.map((all) => {
       all.selected = false;
       return all;
@@ -50,6 +63,8 @@ export default function Config() {
       return id !== selectedCount.id;
     });
     setStore(newList);
+    setSelectedCount(defaultCount);
+    Alert.alert('Atenção', `${selectedCount.title}, excluído com sucesso !!!`);
   };
 
   const updateStorePosition = (pos) => {
@@ -69,22 +84,24 @@ export default function Config() {
   };
 
   const incrementar = () => {
+    const {id, title, selected, count} = selectedCount;
     const incItem = {
-      id: selectedCount.id,
-      title: selectedCount.title,
-      selected: selectedCount.selected,
-      count: selectedCount.count + 1,
+      id,
+      title,
+      selected,
+      count: count + 1,
     };
     setSelectedCount(incItem);
     updateStorePosition(incItem);
   };
 
   const decrementar = () => {
+    const {id, title, selected, count} = selectedCount;
     const decItem = {
-      id: selectedCount.id,
-      title: selectedCount.title,
-      selected: selectedCount.selected,
-      count: selectedCount.count - 1,
+      id,
+      title,
+      selected,
+      count: count - 1,
     };
     setSelectedCount(decItem);
     updateStorePosition(decItem);
