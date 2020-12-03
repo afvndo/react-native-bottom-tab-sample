@@ -9,19 +9,21 @@ function Header({title, backbutton = false}) {
   const navigation = useNavigation();
 
   async function handleButtonClick() {
-    navigation.goBack();
+    navigation.navigate('Main');
   }
 
   return (
     <S.Container>
-      {backbutton ? (
-        <S.BackButton onPress={handleButtonClick}>
-          <Icon name="chevron-left" size={42} color="#1380BA" />
-        </S.BackButton>
-      ) : (
-        <Text />
-      )}
-      <S.Title>{title}</S.Title>
+      <S.HeaderContainer>
+        {backbutton ? (
+          <S.BackButton onPress={handleButtonClick}>
+            <Icon name="arrow-left" size={35} color="#fff" />
+          </S.BackButton>
+        ) : (
+          <Text />
+        )}
+        <S.Title>{title}</S.Title>
+      </S.HeaderContainer>
     </S.Container>
   );
 }

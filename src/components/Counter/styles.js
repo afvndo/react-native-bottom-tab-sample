@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   background: ${({selected}) => (selected ? '#bbaa00' : '#fff090')};
-  width: 90%;
+  width: 100%;
   height: 155px;
   border-radius: 5px;
   justify-content: space-between;

@@ -4,21 +4,30 @@ import {RectButton} from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   width: 100%;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
   flex-direction: row;
-  background-color: #ff0044;
-  height: 100px;
+  background-color: darkblue;
+  height: 80px;
   padding-left: 10px;
+  padding-bottom: 10px;
 `;
 
-export const BackButton = styled(RectButton)`
-  background: transparent;
-  width: 40px;
-  height: 40px;
+export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: center;
-  margin: 5px 0 0 10px;
+  flex-direction: row;
+`;
+
+export const BackButton = styled.TouchableOpacity`
+  background: transparent;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 20px;
+  margin-right: 5px;
 `;
 
 export const Title = styled.Text`

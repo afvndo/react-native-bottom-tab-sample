@@ -9,7 +9,12 @@ const Tab = createBottomTabNavigator();
 
 function AppRoutes() {
   return (
-    <Tab.Navigator initialRouteName="Main">
+    <Tab.Navigator
+      initialRouteName="Main"
+      tabBarOptions={{
+        activeTintColor: 'yellow',
+        style: {backgroundColor: 'darkblue'},
+      }}>
       <Tab.Screen
         name="Main"
         component={Main}

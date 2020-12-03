@@ -1,32 +1,13 @@
-import React, {
-  createContext,
-  useContext,
-  useCallback,
-  useState,
-  useEffect,
-} from 'react';
+import React, {createContext, useState} from 'react';
 
-const AuthContext = createContext({});
+export const StoreContext = createContext([]);
 
-const StorageProvider: React.FC = ({children}) => {
+export const StoreProvider = ({children}) => {
+  const [store, setStore] = useState([]);
+
   return (
-    <AuthContext.Provider
-      value={{
-        logEvent,
-      }}>
+    <StoreContext.Provider value={[store, setStore]}>
       {children}
-    </AuthContext.Provider>
+    </StoreContext.Provider>
   );
 };
-
-function useStorage() {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useStorage shoud be used with an StorageProvider');
-  }
-
-  return context;
-}
-
-export {useStorage, StorageProvider};
