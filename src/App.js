@@ -10,14 +10,18 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {StatusBar} from 'react-native';
 
+import {StoreProvider} from './hooks/storage';
+
 import Routes from './routes';
 
 function App() {
   return (
-    <NavigationContainer>
-      <StatusBar backgroundColor={'#ff0044'} />
-      <Routes />
-    </NavigationContainer>
+    <StoreProvider>
+      <NavigationContainer>
+        <StatusBar backgroundColor={'darkblue'} />
+        <Routes />
+      </NavigationContainer>
+    </StoreProvider>
   );
 }
 
